@@ -1,0 +1,22 @@
+[
+  {
+    "model": "levelupapi.event",
+    "pk": 1,
+    "fields": {
+      "game": 1,
+      "organizer": 1,
+      "description": "game night at bongo",
+      "datetime": "2020-08-28T14:51:39.989Z"
+    }
+  },
+  {
+    "model": "levelupapi.event",
+    "pk": 2,
+    "fields": {
+      "game": 2,
+      "organizer": 1,
+      "description": "game night at bongo",
+      "datetime": "2020-08-28T14:51:39.989Z"
+    }
+  }
+]
