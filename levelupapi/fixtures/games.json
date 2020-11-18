@@ -1,0 +1,26 @@
+[
+  {
+    "model": "levelupapi.game",
+    "pk": 1,
+    "fields": {
+      "title": "Monopoly",
+      "maker": "Hasbro",
+      "skill_level": 10,
+      "gamer": 1,
+      "game_type": 1,
+      "number_of_players": 4
+    }
+  },
+  {
+    "model": "levelupapi.game",
+    "pk": 2,
+    "fields": {
+      "title": "Life",
+      "maker": "Hasbro",
+      "skill_level": 3,
+      "gamer": 1,
+      "game_type": 1,
+      "number_of_players": 4
+    }
+  }
+]
