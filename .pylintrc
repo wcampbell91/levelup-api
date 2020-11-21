@@ -4,3 +4,6 @@ good-names=i,j,ex,pk
 [MESSAGES CONTROL]
 disable=broad-except
 
+[MASTER]
+disable=C0114, # missing-module-docstring, 
+disable=C0114, # missing-class-docstring
