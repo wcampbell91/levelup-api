@@ -9,7 +9,7 @@ class Game(models.Model):
         on_delete=CASCADE,
         related_name="games",
         related_query_name="game")
-    game_type = models.ForeignKey("Game_Type",
+    game_type = models.ForeignKey("GameType",
         on_delete=CASCADE,
         related_name="games",
         related_query_name="game")
