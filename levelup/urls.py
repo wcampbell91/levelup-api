@@ -2,10 +2,12 @@ from django.conf.urls import include
 from django.urls import path
 from levelupapi.views import register_user, login_user
 from rest_framework import routers
-from levelupapi.views import GameTypesViewSet
+from levelupapi.views import GameTypesViewSet, GamesViewSet, EventsViewSet
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'gametypes', GameTypesViewSet, 'gametype')
+router.register(r'games', GamesViewSet, 'game')
+router.register(r'events', EventsViewSet, 'event')
 
 urlpatterns = [
     path('', include(router.urls)),
