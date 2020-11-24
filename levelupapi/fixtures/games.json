@@ -22,5 +22,17 @@
       "game_type": 1,
       "number_of_players": 4
     }
+  },
+  {
+    "model": "levelupapi.game",
+    "pk": 3,
+    "fields":{
+      "title": "Dungeons & Dragons",
+      "maker": "Wizards of the Coast",
+      "skill_level": 3,
+      "gamer": 1,
+      "game_type": 2,
+      "number_of_players": 5
+    }
   }
 ]
