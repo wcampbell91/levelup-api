@@ -7,8 +7,3 @@ class Event(models.Model):
     description = models.TextField()
     date = models.DateField()
     time = models.TimeField()
-    participants = models.ManyToManyField(
-        "Gamer",
-        related_name="participant_events",
-        related_query_name="participant_event"
-    )
