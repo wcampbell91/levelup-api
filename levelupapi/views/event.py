@@ -39,6 +39,7 @@ class EventsViewSet(ViewSet):
         except ValidationError as ex:
             return Response({"reason": ex.message}, status=status.HTTP_400_BAD_REQUEST)
 
+
     def retrieve(self, request, pk=None):
         """Handle GET requests for single event
 
@@ -51,6 +52,7 @@ class EventsViewSet(ViewSet):
             return Response(serializer.data)
         except Exception as ex:
             return HttpResponseServerError(ex)
+
 
     def update(self, request, pk=None):
         """Handle PUT requests for an event
@@ -71,6 +73,7 @@ class EventsViewSet(ViewSet):
 
         return Response({}, status=status.HTTP_204_NO_CONTENT)
 
+
     def destroy(self, request, pk=None):
         """Handle DELETE requests for a single game
         
@@ -88,14 +91,25 @@ class EventsViewSet(ViewSet):
             return Response({'message': ex.args[0]}, status = status.HTTP_404_NOT_FOUND)
         except Exception as ex:
             return Response({'message': ex.args[0]}, status = status.HTTP_500_INTERNAL_SERVER_ERROR)
-    
+
+
     def list(self, request):
         """Handle GET requests to events to resource
 
         Returns:
             Response -- JSON serialized list of events
         """
+        gamer = Gamer.objects.get(user=request.auth.user)
         events = Event.objects.all()
+
+        for event in events:
+            event.joined = None
+
+            try: 
+                EventGamers.objects.get(event=event, gamer=gamer)
+                event.joined = True
+            except EventGamers.DoesNotExist:
+                event.joined = False
 
         # support filtering events by game
         game = self.request.query_params.get('gameId', None)
@@ -104,6 +118,7 @@ class EventsViewSet(ViewSet):
         
         serializer = EventSerializer(events, many=True, context={'request': request})
         return Response(serializer.data)
+
 
     @action(methods=['get', 'post', 'delete'], detail=True)
     def signup(self, request, pk=None):
@@ -189,5 +204,5 @@ class EventSerializer(serializers.HyperlinkedModelSerializer):
             view_name = 'event',
             lookup_field = 'id'
         )
-        fields = ('id', 'url', 'game', 'organizer', 'description', 'date', 'time')
+        fields = ('id', 'url', 'game', 'organizer', 'description', 'date', 'time', 'joined')
 # ^^ all of that is another way to do it with more control instead of just setting it to depth = 1 like in games.py
