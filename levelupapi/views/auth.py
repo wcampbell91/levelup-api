@@ -16,7 +16,7 @@ def login_user(request):
 
     req_body = json.loads(request.body.decode())
 
-    # If the request is a HTTP POST, try to pull our the relevant information.
+    # If the request is a HTTP POST, try to pull out the relevant information.
     if request.method == 'POST':
         # Use the built in authenticate method to verify
         username = req_body['username']
