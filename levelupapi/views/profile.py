@@ -43,7 +43,7 @@ class GamerSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Gamer
-        fileds = ('user', 'bio')
+        fields = ('user', 'bio')
 
 
 class GameSerialzer(serializers.HyperlinkedModelSerializer):
