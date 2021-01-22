@@ -1,13 +1,11 @@
 """View module for handling requests about user profiles"""
-from levelupapi.models.game import Game
 from django.contrib.auth.models import User
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.viewsets import ViewSet
 from rest_framework.response import Response
 from rest_framework import serializers
-from levelupapi.models import Event, Gamer
-
+from levelupapi.models import Event, Gamer, Game
 class ProfileViewSet(ViewSet):
     """Gamer can see profile information"""
 
@@ -29,7 +27,6 @@ class ProfileViewSet(ViewSet):
 
         return Response(profile)
 
-
 class UserSerializer(serializers.ModelSerializer):
     """JSON serializer for gamers relate3d to Django user"""
     class Meta:
@@ -44,6 +41,7 @@ class GamerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Gamer
         fields = ('user', 'bio')
+        depth = 1
 
 
 class GameSerialzer(serializers.HyperlinkedModelSerializer):
